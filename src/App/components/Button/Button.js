@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Button.module.css";
 import PropTypes from "prop-types";
 
 function Button(props) {
-  console.log(props);
+  //gestion d'une valeur etatique
+  const [clicked, setClicked] = useState(false);
+  //observation des changement /montage de la valeur
+  useEffect(() => {
+    if(clicked){
+      setTimeout(()=>{setClicked(false)},350);
+    }
+  }, [clicked]);
+  //cmp did mount
+  useEffect(() => {
+    console.log('le composant est monté')
+  }, [])
   return (
     <button
       onClick={(evt) => {
+        //moddif async d'une valeur d'etat
+        setClicked(true);
         props.lorsqueLeButtonEstClicked();
       }}
-      className={style.Button}
+      className={`${style.Button}${clicked?' '+style.clicked:''}`}
       style={{...props.style, backgroundColor: props.bgColor, color: props.color }}
       type={props.type}
     >
