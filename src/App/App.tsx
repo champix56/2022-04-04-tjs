@@ -1,15 +1,18 @@
-import React from "react";
+import { stat } from "fs";
+import React, { useState } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
 
 function App() {
+  const [state, setstate] = useState(0)
   return (
     <div className="App">
-      DEMAT BREIZH
+      DEMAT BREIZH : {state} <br/>
       <Button
         bgColor="tomato"
         lorsqueLeButtonEstClicked={(arg: any) => {
-          console.log(arg);
+          setstate(state+1);
+          console.log(state);
         }}
       >
         Hello
