@@ -1,38 +1,55 @@
-import { stat } from "fs";
-import React, { useState } from "react";
-import "./App.css";
+import React, { Component } from "react";
+import style from "./App.module.css";
 import Button from "./components/Button/Button";
 
-function App() {
-  const [state, setstate] = useState(0)
-  return (
-    <div className="App">
-      DEMAT BREIZH : {state} <br/>
-      <Button
-        bgColor="tomato"
-        lorsqueLeButtonEstClicked={(arg: any) => {
-          setstate(state+1);
-          console.log(state);
-        }}
-      >
-        Hello
-      </Button>
-      <Button
-        bgColor="tomato"
-        color="blue"
-        lorsqueLeButtonEstClicked={(arg: any) => {
-          console.log(arg);
-        }}
-        type="submit"
-      >
-        <div>with div</div>
-      </Button>
-      <Button style={{border:'2px solid black', padding:'50px'}}>
-        <div>div 1</div>
-        <div>div 2</div>
-      </Button>
-    </div>
-  );
+interface I_AppProps {
+  AppName?: string;
 }
-
+interface I_AppState {
+  counter: number;
+  uneValue: string;
+}
+class App extends Component<I_AppProps, I_AppState> {
+  constructor(props: I_AppProps) {
+    super(props);
+    this.state = { counter: 0, uneValue: "Hello" };
+  }
+  componentDidMount() {
+    console.log(
+      "%c%s",
+      "font-size:24pt;color:green;font-weight:900",
+      "Le component App est monté"
+    );
+  }
+  componentDidUpdate(oldProps:I_AppProps,oldState:I_AppState){
+    console.log(
+      "%c%s",
+      "font-size:16pt;color:blue;font-weight:900",
+      "==========cmp updated========"
+    );
+    console.log('props->',oldProps,this.props);
+    console.log('state->',oldState,this.state);
+    console.log(
+      "%c%s",
+      "font-size:16pt;color:blue;font-weight:900",
+      "============================="
+    );
+  }
+  render(): React.ReactNode {
+    return (
+      <div className={style.App}>
+        value du compteur : {this.state.counter}
+        <br />
+        <Button
+          lorsqueLeButtonEstClicked={() => {
+            this.setState({ counter: this.state.counter + 1 });
+            console.log(this.state);
+          }}
+        >
+          {this.state.uneValue}
+        </Button>
+      </div>
+    );
+  }
+}
 export default App;
