@@ -7,13 +7,25 @@ function App() {
     <div className="App">
       DEMAT BREIZH
       <Button
-        text="Text du button"
         bgColor="skyblue"
-        lorsqueLeButtonEstClicked={(arg:any) => {
+        lorsqueLeButtonEstClicked={(arg: any) => {
           console.log(arg);
         }}
-      />
-      <Button text="Button 3" />
+      >
+        Hello
+      </Button>
+      <Button
+        bgColor="skyblue"
+        lorsqueLeButtonEstClicked={(arg: any) => {
+          console.log(arg);
+        }}
+      >
+        <div>with div</div>
+      </Button>
+      <Button>
+        <div>div 1</div>
+        <div>div 2</div>
+      </Button>
     </div>
   );
 }

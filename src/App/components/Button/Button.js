@@ -12,15 +12,15 @@ function Button(props) {
       className={style.Button}
       style={{ backgroundColor: props.bgColor }}
     >
-      {props.text}
+      {props.children}
     </button>
   );
 }
 
 Button.propTypes={
-  text: PropTypes.string.isRequired,
   lorsqueLeButtonEstClicked : PropTypes.func.isRequired,
-  bgColor: PropTypes.string
+  bgColor: PropTypes.string,
+  children:PropTypes.any.isRequired,
 }
 Button.defaultProps={
   lorsqueLeButtonEstClicked:()=>{console.warn('Fonction du button undefined')}
