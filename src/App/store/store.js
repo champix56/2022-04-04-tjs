@@ -1,4 +1,4 @@
-import {createStore} from 'redux'
+import {combineReducers, createStore} from 'redux'
 import { REST_SRV_BASE_URL } from '../config/config';
 const initialRessourcesState={
     images:[],
@@ -10,11 +10,12 @@ export const RessourcesActions=Object.freeze({
     ADD_MEME:'ADD_MEME'
 });
 function ressourcesReducer(state=initialRessourcesState,action){
-    console.log(action)
     switch(action.type){
+        //actions disponible pour les composants
         case RessourcesActions.ADD_INIT_IMAGES:return {...state,images:action.values}
         case RessourcesActions.ADD_INIT_MEMES:return {...state,memes:action.values}
         case RessourcesActions.ADD_MEME:return {...state,memes:[...state.memes,action.value]}
+        //gestion de l'init des values async
         case 'ADD_INIT_ALL':return {...state,memes:action.memes,images:action.images}
         case 'INIT_LOADING':
             const prm = fetch(`${REST_SRV_BASE_URL}/memes`).then((f) => f.json());
@@ -26,7 +27,19 @@ function ressourcesReducer(state=initialRessourcesState,action){
         default: return state;
     }
 }
-export const store=createStore(ressourcesReducer);
+
+
+function modalReducer(state={isShown:false,content:''},action){
+    switch(action.type){
+        case 'SHOW_MODAL':return {isShown:true,content:action.value};
+        case 'HIDE_MODAL':return {isShown:false,content:''};
+        default:return state;
+    }
+}
+
+//export const storeModal=createStore(modalReducer);
+const combinedReducers=combineReducers({modal:modalReducer,ressources: ressourcesReducer});
+export const store=createStore(combinedReducers);
 store.subscribe(()=>{
     console.log(store.getState())
 });
