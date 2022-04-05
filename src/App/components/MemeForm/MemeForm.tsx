@@ -31,6 +31,13 @@ const MemeForm: FC<I_MemeFormProps> = (props) => {
           }}
         >
           <option value="-1">Aucune</option>
+          {props.images.map((e, i) => {
+            return (
+              <option value={e.id} key={"select-img-" + i}>
+                {e.name}
+              </option>
+            );
+          })}
         </select>
         <hr />
         <h2>text</h2>
