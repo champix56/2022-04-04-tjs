@@ -12,7 +12,9 @@ const MemeForm: FC<I_MemeFormProps> = (props) => {
   //const [state, setstate] = useState(initialState);
   return (
     <div className={style.MemeForm} data-testid="MemeForm">
-      <form>
+      <form onSubmit={(evt)=>{
+        evt.preventDefault();
+      }}>
         <input type="text" name="meme_text" id="" placeholder="Text du meme" value={props.currentMeme.text} onChange={
           evt=>{props.onInputValueChange({text:evt.target.value})}
         } />

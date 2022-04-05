@@ -57,11 +57,23 @@ class App extends Component<I_AppProps, I_AppState> {
   render(): React.ReactNode {
     return (
       <div className={style.App}>
+        {JSON.stringify(this.state)}
         <FlexWLayout>
           <div>
-            <MemeViewer meme={this.state.currentMeme} image={this.state.images.find(e=>e.id===this.state.currentMeme.imageId)} />
+            <MemeViewer
+              meme={this.state.currentMeme}
+              image={this.state.images.find(
+                (e) => e.id === this.state.currentMeme.imageId
+              )}
+            />
           </div>
-          <MemeForm />
+          <MemeForm
+            currentMeme={this.state.currentMeme}
+            images={this.state.images}
+            onInputValueChange={(changedValuesObject: any) => {
+              this.setState({currentMeme:{...this.state.currentMeme,...changedValuesObject}});
+            }}
+          />
         </FlexWLayout>
       </div>
     );
