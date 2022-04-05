@@ -59,12 +59,12 @@ class App extends Component<I_AppProps> {
         {JSON.stringify(this.state)}
         <FlexWLayout>
           <div>
-            {/* <MemeViewer
-              meme={this.state.currentMeme}
-              image={this.state.images.find(
-                (e) => e.id === this.state.currentMeme.imageId
-              )}
-            /> */}
+            <MemeViewer
+              // meme={this.state.currentMeme}
+              // image={this.state.images.find(
+              //   (e) => e.id === this.state.currentMeme.imageId
+              // )}
+            />
           </div>
           <MemeForm
             // currentMeme={this.state.currentMeme}
