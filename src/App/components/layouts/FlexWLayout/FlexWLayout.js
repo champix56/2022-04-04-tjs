@@ -10,7 +10,7 @@ const FlexWLayout = (props) => {
   );
 };
 FlexWLayout.propTypes = {
-  children:PropTypes.any.isRequired,
+  children:PropTypes.array.isRequired,
 };
 FlexWLayout.defaultProps = {
   children:<div>Children absents</div>

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import style from "./App.module.css";
 import Button from "./components/Button/Button";
+import FlexWLayout from "./components/layouts/FlexWLayout/FlexWLayout";
+import MemeForm from "./components/MemeForm/MemeForm";
+import MemeViewer from "./components/MemeViewer/MemeViewer";
 
 interface I_AppProps {
   AppName?: string;
@@ -21,14 +24,14 @@ class App extends Component<I_AppProps, I_AppState> {
       "Le component App est monté"
     );
   }
-  componentDidUpdate(oldProps:I_AppProps,oldState:I_AppState){
+  componentDidUpdate(oldProps: I_AppProps, oldState: I_AppState) {
     console.log(
       "%c%s",
       "font-size:16pt;color:blue;font-weight:900",
       "==========cmp updated========"
     );
-    console.log('props->',oldProps,this.props);
-    console.log('state->',oldState,this.state);
+    console.log("props->", oldProps, this.props);
+    console.log("state->", oldState, this.state);
     console.log(
       "%c%s",
       "font-size:16pt;color:blue;font-weight:900",
@@ -38,16 +41,10 @@ class App extends Component<I_AppProps, I_AppState> {
   render(): React.ReactNode {
     return (
       <div className={style.App}>
-        value du compteur : {this.state.counter}
-        <br />
-        <Button
-          lorsqueLeButtonEstClicked={() => {
-            this.setState({ counter: this.state.counter + 1 });
-            console.log(this.state);
-          }}
-        >
-          {this.state.uneValue}
-        </Button>
+        <FlexWLayout>
+          <MemeViewer />
+          <MemeForm />
+        </FlexWLayout>
       </div>
     );
   }
