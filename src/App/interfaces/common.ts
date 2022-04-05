@@ -7,7 +7,7 @@ export interface I_Meme{
     fontSize:number
     underline:boolean
     italic:boolean
-    imageId:number|null,
+    imageId:number,
     color:string
 };
 export const DummyMeme:I_Meme={
