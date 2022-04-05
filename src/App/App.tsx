@@ -3,6 +3,7 @@ import style from "./App.module.css";
 import Button from "./components/Button/Button";
 import FlexWLayout from "./components/layouts/FlexWLayout/FlexWLayout";
 import MemeForm from "./components/MemeForm/MemeForm";
+import  MemeThumbnail  from "./components/MemeThumbnail/MemeThumbnail";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
 import { REST_SRV_BASE_URL } from "./config/config";
 import {
@@ -57,27 +58,12 @@ class App extends Component<I_AppProps> {
     return (
       <div className={style.App}>
         {JSON.stringify(this.state)}
+        <MemeThumbnail/>
         <FlexWLayout>
           <div>
-            <MemeViewer
-              // meme={this.state.currentMeme}
-              // image={this.state.images.find(
-              //   (e) => e.id === this.state.currentMeme.imageId
-              // )}
-            />
+            <MemeViewer/>
           </div>
-          <MemeForm
-            // currentMeme={this.state.currentMeme}
-            // images={this.state.images}
-            // onInputValueChange={(changedValuesObject: any) => {
-            //   this.setState({
-            //     currentMeme: {
-            //       ...this.state.currentMeme,
-            //       ...changedValuesObject,
-            //     },
-            //   });
-            // }}
-          />
+          <MemeForm/>
         </FlexWLayout>
       </div>
     );
