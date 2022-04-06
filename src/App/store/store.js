@@ -65,7 +65,7 @@ function modalReducer(
       return {
         isShown: true,
         title: action.title,
-        content: action.value,
+        content: action.content,
         closeCallback: action.closeCallback,
         cancelCallback: action.cancelCallback,
       };
