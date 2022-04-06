@@ -39,22 +39,45 @@ function ressourcesReducer(state = initialRessourcesState, action) {
 }
 
 function modalReducer(
-  state = { isShown: true,title:'Bienvenu', content: <div>Bienvenu sur meme generator</div> , closeCallback:()=>console.log('Hello closed')},
+  state = {
+    isShown: true,
+    title: "Bienvenu",
+    content: <div>Bienvenu sur meme generator</div>,
+    closeCallback: () => console.log("Hello closed"),
+    cancelCallback: undefined
+  },
   action
 ) {
   switch (action.type) {
     case "SHOW_MODAL":
       return {
         isShown: true,
-        title:action.title,
+        title: action.title,
         content: action.value,
-        closeCallback: action.callback,
+        closeCallback: action.closeCallback,
+        cancelCallback: action.cancelCallback,
       };
     case "HIDE_MODAL":
       if (state.closeCallback && typeof state.closeCallback === "function") {
         state.closeCallback();
       }
-      return { isShown: false, content: "" };
+      return {
+        isShown: false,
+        content: "",
+        cancelCallback: undefined,
+        closeCallback: () => {},
+      };
+    case "CANCEL_MODAL":
+      if (state.cancelCallback && typeof state.cancelCallback === "function") {
+        state.cancelCallback();
+      }
+      return {
+        isShown: false,
+        content: "",
+        cancelCallback: undefined,
+        closeCallback: () => {},
+      };
+
     default:
       return state;
   }

@@ -8,7 +8,9 @@ interface I_ModalProps {
   isShown: boolean;
   content: ReactElement | Array<ReactElement> | string;
   title: string | undefined;
-  hide: Function;
+  onOk: Function;
+  onCancel: Function;
+  cancelCallback:Function;
 }
 export const Modal: React.FC<I_ModalProps> = (props) => {
   return (
@@ -21,7 +23,8 @@ export const Modal: React.FC<I_ModalProps> = (props) => {
         {props.title && <div className={style.title}>{props.title}</div>}
         <div className={style.content}>{props.content}</div>
         <div className={style.buttons}>
-          <Button lorsqueLeButtonEstClicked={(evt) => {props.hide();}}>Close</Button>
+          {props.cancelCallback&&<Button bgColor="tomato" lorsqueLeButtonEstClicked={(evt) => {props.onCancel();}}>Annul</Button>}
+          <Button lorsqueLeButtonEstClicked={(evt) => {props.onOk();}}>Ok</Button>
         </div>
       </div>
     </div>
@@ -32,7 +35,8 @@ function mstp(s: any, p: any) {
 }
 function mdtp(dispatch: Function) {
   return {
-    hide: () => {dispatch({ type: "HIDE_MODAL" });},
+    onOk: () => {dispatch({ type: "HIDE_MODAL" });},
+    onCancel: () => {dispatch({ type: "HIDE_MODAL" });},
   };
 }
 export default connect(mstp, mdtp)(Modal);
