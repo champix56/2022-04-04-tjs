@@ -6,6 +6,8 @@ import MemeForm from "./components/MemeForm/MemeForm";
 import MemeThumbnail from "./components/MemeThumbnail/MemeThumbnail";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
 import Navbar from "./components/Navbar/Navbar";
+import { Route, Switch, Link } from "react-router-dom";
+
 interface I_AppProps {
   AppName?: string;
 }
@@ -14,17 +16,41 @@ class App extends Component<I_AppProps> {
     return (
       <div className={style.App}>
         <FlexHLayout>
-          <div className={style.header}>Meme Generator . react</div>
-          <Navbar/>
-          <FlexWLayout>
-            <div>
-              <MemeViewer />
-            </div>
-            <MemeForm />
-          </FlexWLayout>
+          <div className={style.header}>
+            Meme Generator . react
+            <br />
+            <Link to="/">Home</Link>&nbsp;
+            <Link to="/thumbnail">thumbnail</Link>&nbsp;
+            <Link to="/editor">Nouveau</Link>&nbsp;
+            <Link to="/editor/1">edit/1</Link>
+          </div>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact>
+              <div className={style.home}>Page d'accueil</div>
+            </Route>
+            <Route path="/editor" component={Editor}/>
+            <Route path="/thumbnail">
+              <MemeThumbnail />
+            </Route>
+            <Route path="/">
+              <div className={style.Erreur}>Page Innexistante</div>
+            </Route>
+          </Switch>
         </FlexHLayout>
       </div>
     );
   }
 }
+function Editor(props:any) {
+  return (
+    <FlexWLayout>
+      <div>
+        <MemeViewer />
+      </div>
+      <MemeForm />
+    </FlexWLayout>
+  );
+}
+
 export default App;
