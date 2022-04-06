@@ -43,7 +43,9 @@ function mapsStateToProps(state: any, own: any) {
     ),
   };
 }
-function mapDispatchToProps() {}
+function mapDispatchToProps() {
+  return {}
+}
 
 export default connect(mapsStateToProps, mapDispatchToProps)(MemeViewer);
 export const unConnectedMemeViewer = MemeViewer;
