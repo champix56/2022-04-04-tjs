@@ -29,11 +29,6 @@ class App extends Component<I_AppProps> {
         <FlexHLayout>
           <div className={style.header}>
             Meme Generator . react
-            <br />
-            <Link to="/">Home</Link>&nbsp;
-            <Link to="/thumbnail">thumbnail</Link>&nbsp;
-            <Link to="/editor">Nouveau</Link>&nbsp;
-            <Link to="/editor/1">edit/1</Link>
           </div>
           <Navbar />
           <Switch>
