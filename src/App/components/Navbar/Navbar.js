@@ -21,6 +21,9 @@ const Navbar = (props) => {
             <LinkContainer to="/editor">
               <Nav.Link>New meme</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/listPDF">
+              <Nav.Link>liste des memes en pdf</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </NavBar>
