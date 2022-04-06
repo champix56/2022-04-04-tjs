@@ -6,7 +6,7 @@ import MemeForm from "./components/MemeForm/MemeForm";
 import MemeThumbnail from "./components/MemeThumbnail/MemeThumbnail";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
 import Navbar from "./components/Navbar/Navbar";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, useParams, useLocation, useHistory, withRouter } from "react-router-dom";
 
 interface I_AppProps {
   AppName?: string;
@@ -29,7 +29,8 @@ class App extends Component<I_AppProps> {
             <Route path="/" exact>
               <div className={style.home}>Page d'accueil</div>
             </Route>
-            <Route path="/editor" component={Editor}/>
+            <Route path="/editor" exact component={RoutedEditor}/>
+            <Route path="/editor/:id" component={RoutedEditor}/>
             <Route path="/thumbnail">
               <MemeThumbnail />
             </Route>
@@ -43,6 +44,7 @@ class App extends Component<I_AppProps> {
   }
 }
 function Editor(props:any) {
+  console.log(props);
   return (
     <FlexWLayout>
       <div>
@@ -52,5 +54,5 @@ function Editor(props:any) {
     </FlexWLayout>
   );
 }
-
+const RoutedEditor=withRouter(Editor);
 export default App;
