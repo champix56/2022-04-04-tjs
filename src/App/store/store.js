@@ -18,7 +18,11 @@ function ressourcesReducer(state = initialRessourcesState, action) {
     case RessourcesActions.ADD_INIT_MEMES:
       return { ...state, memes: action.values };
     case RessourcesActions.ADD_MEME:
-      return { ...state, memes: [...state.memes, action.value] };
+      const pos=state.memes.findIndex(m=>m.id===action.value.id);
+      if(pos<0){return { ...state, memes: [...state.memes, action.value] };}
+      else {
+        return { ...state, memes: [...state.memes.slice(0,pos-1), action.value,...state.memes.slice(pos)] };
+      }
     //gestion de l'init des values async
     case "ADD_INIT_ALL":
       return { ...state, memes: action.memes, images: action.images };
