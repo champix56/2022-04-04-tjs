@@ -38,11 +38,22 @@ function ressourcesReducer(state = initialRessourcesState, action) {
   }
 }
 
-function modalReducer(state = { isShown: false, content: "" }, action) {
+function modalReducer(
+  state = { isShown: true,title:'Bienvenu', content: <div>Bienvenu sur meme generator</div> , closeCallback:()=>console.log('Hello closed')},
+  action
+) {
   switch (action.type) {
     case "SHOW_MODAL":
-      return { isShown: true, content: action.value };
+      return {
+        isShown: true,
+        title:action.title,
+        content: action.value,
+        closeCallback: action.callback,
+      };
     case "HIDE_MODAL":
+      if (state.closeCallback && typeof state.closeCallback === "function") {
+        state.closeCallback();
+      }
       return { isShown: false, content: "" };
     default:
       return state;

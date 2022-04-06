@@ -18,6 +18,7 @@ import {
 import { connect } from "react-redux";
 import { DummyMeme, I_Meme } from "./interfaces/common";
 import { CURRENT_ACTIONS } from "./store/store";
+import Modal from "./components/Modal/Modal";
 
 interface I_AppProps {
   AppName?: string;
@@ -25,27 +26,28 @@ interface I_AppProps {
 class App extends Component<I_AppProps> {
   render(): React.ReactNode {
     return (
-      <div className={style.App}>
-        <FlexHLayout>
-          <div className={style.header}>
-            Meme Generator . react
-          </div>
-          <Navbar />
-          <Switch>
-            <Route path="/" exact>
-              <div className={style.home}>Page d'accueil</div>
-            </Route>
-            <Route path="/editor" exact component={RoutedEditor} />
-            <Route path="/editor/:id" component={RoutedEditor} />
-            <Route path="/thumbnail">
-              <MemeThumbnail />
-            </Route>
-            <Route path="/">
-              <div className={style.Erreur}>Page Innexistante</div>
-            </Route>
-          </Switch>
-        </FlexHLayout>
-      </div>
+      <>
+        <div className={style.App}>
+          <FlexHLayout>
+            <div className={style.header}>Meme Generator . react</div>
+            <Navbar />
+            <Switch>
+              <Route path="/" exact>
+                <div className={style.home}>Page d'accueil</div>
+              </Route>
+              <Route path="/editor" exact component={RoutedEditor} />
+              <Route path="/editor/:id" component={RoutedEditor} />
+              <Route path="/thumbnail">
+                <MemeThumbnail />
+              </Route>
+              <Route path="/">
+                <div className={style.Erreur}>Page Innexistante</div>
+              </Route>
+            </Switch>
+          </FlexHLayout>
+        </div>
+        <Modal />
+      </>
     );
   }
 }
