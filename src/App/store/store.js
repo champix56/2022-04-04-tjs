@@ -96,8 +96,8 @@ function currentReducer(state = DummyMeme, action) {
       return { ...state, ...action.value };
 
     case CURRENT_ACTIONS.SAVE_CURRENT:
-      fetch(`${REST_SRV_BASE_URL}/memes`, {
-        method: "POST",
+      fetch(`${REST_SRV_BASE_URL}/memes${undefined!==state.id?'/'+state.id:''}`, {
+        method: `${undefined!==state.id?'PUT':'POST'}`,
         headers: {
           "Content-Type": "application/json",
         },
