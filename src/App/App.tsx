@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import { DummyMeme, I_Meme } from "./interfaces/common";
 import { CURRENT_ACTIONS } from "./store/store";
 import Modal from "./components/Modal/Modal";
+import Listpdf from "./components/Listpdf/Listpdf";
 
 interface I_AppProps {
   AppName?: string;
@@ -35,6 +36,7 @@ class App extends Component<I_AppProps> {
               <Route path="/" exact>
                 <div className={style.home}>Page d'accueil</div>
               </Route>
+              <Route path="/listPDF" exact component={Listpdf} />
               <Route path="/editor" exact component={RoutedEditor} />
               <Route path="/editor/:id" component={RoutedEditor} />
               <Route path="/thumbnail">
