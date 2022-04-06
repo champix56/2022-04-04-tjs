@@ -4,18 +4,23 @@ import style from "./Navbar.module.scss";
 import { Navbar as NavBar, Nav, Container } from "react-bootstrap";
 // import '../../../../node_modules/bootstrap/dist/css/bootstrap.css'
 // const initialState = {};
-
+import { LinkContainer } from "react-router-bootstrap";
 const Navbar = (props) => {
   // const [state, setstate] = useState(initialState);
   return (
     <div className={style.Navbar} data-testid="Navbar">
       <NavBar bg="primary" variant="dark">
         <Container>
-          <NavBar.Brand href="#home">Navbar</NavBar.Brand>
+          <LinkContainer to="/">
+            <NavBar.Brand>Home</NavBar.Brand>
+          </LinkContainer>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <LinkContainer to="/thumbnail">
+              <Nav.Link>Thumbnail</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/editor">
+              <Nav.Link>New meme</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </NavBar>
