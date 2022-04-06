@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import style from "./App.module.css";
-import Button from "./components/Button/Button";
 import FlexWLayout from "./components/layouts/FlexWLayout/FlexWLayout";
 import MemeForm from "./components/MemeForm/MemeForm";
 import  MemeThumbnail  from "./components/MemeThumbnail/MemeThumbnail";
