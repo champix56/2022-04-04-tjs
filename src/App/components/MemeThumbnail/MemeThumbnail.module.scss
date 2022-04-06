@@ -5,7 +5,8 @@
     flex-wrap: wrap;
     overflow: auto;
 }
-.MemeThumbnail>svg{
-    max-width: 22vw;
+.MemeThumbnail a div{
+    width: 22vw;
+    text-align: center;
     margin-bottom:10px;
 }
