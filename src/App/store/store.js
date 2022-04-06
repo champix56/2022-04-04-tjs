@@ -18,10 +18,18 @@ function ressourcesReducer(state = initialRessourcesState, action) {
     case RessourcesActions.ADD_INIT_MEMES:
       return { ...state, memes: action.values };
     case RessourcesActions.ADD_MEME:
-      const pos=state.memes.findIndex(m=>m.id===action.value.id);
-      if(pos<0){return { ...state, memes: [...state.memes, action.value] };}
-      else {
-        return { ...state, memes: [...state.memes.slice(0,pos-1), action.value,...state.memes.slice(pos)] };
+      const pos = state.memes.findIndex((m) => m.id === action.value.id);
+      if (pos < 0) {
+        return { ...state, memes: [...state.memes, action.value] };
+      } else {
+        return {
+          ...state,
+          memes: [
+            ...state.memes.slice(0, pos - 1),
+            action.value,
+            ...state.memes.slice(pos),
+          ],
+        };
       }
     //gestion de l'init des values async
     case "ADD_INIT_ALL":
@@ -48,7 +56,7 @@ function modalReducer(
     title: "Bienvenu",
     content: <div>Bienvenu sur meme generator</div>,
     closeCallback: () => console.log("Hello closed"),
-    cancelCallback: undefined
+    cancelCallback: undefined,
   },
   action
 ) {
@@ -100,13 +108,18 @@ function currentReducer(state = DummyMeme, action) {
       return { ...state, ...action.value };
 
     case CURRENT_ACTIONS.SAVE_CURRENT:
-      fetch(`${REST_SRV_BASE_URL}/memes${undefined!==state.id?'/'+state.id:''}`, {
-        method: `${undefined!==state.id?'PUT':'POST'}`,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(state),
-      })
+      fetch(
+        `${REST_SRV_BASE_URL}/memes${
+          undefined !== state.id ? "/" + state.id : ""
+        }`,
+        {
+          method: `${undefined !== state.id ? "PUT" : "POST"}`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(state),
+        }
+      )
         .then((f) => f.json())
         .then((o) => {
           store.dispatch({ type: RessourcesActions.ADD_MEME, value: o });
